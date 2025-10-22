@@ -34,8 +34,8 @@ public class EchoClientUDP {
             System.out.println("Received echo: " + receivedMessage);
 
 
-        } catch (IOException e) {
-            throw new RuntimeException(e);
+        } catch (IOException ignored) {
+            System.out.println("An error occurred");
         }
 
     }
