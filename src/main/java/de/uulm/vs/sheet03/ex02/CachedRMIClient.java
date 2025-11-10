@@ -8,9 +8,9 @@ import java.util.HashMap;
 
 public class CachedRMIClient extends UnicastRemoteObject implements Subscriber {
 
-    private HashMap<String, String> localCache;
-    private SubscribeKVStore serverStub;
-    private String clientName;
+    private final HashMap<String, String> localCache;
+    private final SubscribeKVStore serverStub;
+    private final String clientName;
 
     public CachedRMIClient(String name) throws RemoteException {
         super();

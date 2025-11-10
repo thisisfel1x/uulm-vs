@@ -1,7 +1,5 @@
 package de.uulm.vs.sheet03.ex02;
 
-import de.uulm.vs.sheet03.ex01.RMIKVStore;
-
 import java.rmi.RemoteException;
 import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
@@ -13,12 +11,10 @@ import java.util.concurrent.ConcurrentHashMap;
 
 public class SubRMIKVStore extends UnicastRemoteObject implements SubscribeKVStore {
 
-    private HashMap<String, String> store;
-
-    private ConcurrentHashMap<String, List<Subscriber>> subscribers;
-
     public static final String SERVICE_NAME = "SubKVStoreService";
     public static final int RMI_PORT = 1099;
+    private final HashMap<String, String> store;
+    private final ConcurrentHashMap<String, List<Subscriber>> subscribers;
 
     public SubRMIKVStore() throws RemoteException {
         super();
@@ -109,7 +105,7 @@ public class SubRMIKVStore extends UnicastRemoteObject implements SubscribeKVSto
     }
 
     private void notifySubscribers(String key, String value) throws RemoteException {
-        List<Subscriber> subs  = this.subscribers.get(key);
+        List<Subscriber> subs = this.subscribers.get(key);
         if (subs == null) return;
 
         List<Subscriber> deadSubscribers = new ArrayList<>();
