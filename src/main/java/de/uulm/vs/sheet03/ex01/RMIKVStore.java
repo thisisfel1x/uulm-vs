@@ -31,7 +31,6 @@ public class RMIKVStore extends UnicastRemoteObject implements RemoteKVStore {
         try {
             new RMIKVStore();
         } catch (RemoteException ignored) {
-            ignored.printStackTrace();
             System.out.println("RMIKVStore creation failed");
         }
     }
